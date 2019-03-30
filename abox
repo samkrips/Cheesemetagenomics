@@ -1,0 +1,72 @@
+#!/bin/bash --login
+#PBS -l walltime=12:00:00
+#PBS -l select=1:ncpus=16
+#PBS -N Box
+#PBS -A d411-training
+#PBS -j oe
+
+echo "setting temporary directory"
+mkdir -p ~/qiime_tmp
+export TMPDIR=~/qiime_tmp
+
+echo "loading virtual environment"
+conda deactivate
+conda activate qiime1
+
+echo "creating and cd to output directory"
+mkdir -p ~/output/aboxf/
+cd ~/output/aboxf/
+
+
+echo "Calculating Joined Diversity..."
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Name \
+-o ~/output/aboxf \
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Country \
+-o ~/output/aboxf \
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Store_Type \
+-o ~/output/aboxf \
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Rind_or_Core \
+-o ~/output/aboxf \
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Raw_or_Pasteurised \
+-o ~/output/aboxf \
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Soft_or_Hard \
+-o ~/output/aboxf \
+
+compare_alpha_diversity.py \
+-i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
+-m ~/Map.tsv \
+-c Type \
+-o ~/output/aboxf \
+
+
+echo "Calculation Complete"
+
+echo "closing environment"
+conda deactivate
+
+### end script
+
