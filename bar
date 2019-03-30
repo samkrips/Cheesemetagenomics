@@ -1,0 +1,42 @@
+#!/bin/bash --login
+#PBS -l walltime=2:00:00
+#PBS -l select=1:ncpus=16
+#PBS -N yeet
+#PBS -A d411-training
+#PBS -j oe
+
+echo "setting temporary directory"
+mkdir -p ~/qiime_tmp
+export TMPDIR=~/qiime_tmp
+
+echo "loading virtual environment"
+conda deactivate
+conda activate qiime1
+
+echo "creating and cd to output directory"
+mkdir -p ~/output/chartsf/
+cd ~/output/chartsf/
+
+
+plot_taxa_summary.py \
+-i ~/output/taxaf/otu_table_L2.txt \
+
+plot_taxa_summary.py \
+-i ~/output/taxaf/otu_table_L3.txt \
+
+plot_taxa_summary.py \
+-i ~/output/taxaf/otu_table_L4.txt \
+
+plot_taxa_summary.py \
+-i ~/output/taxaf/ otu_table_L5.txt \
+
+plot_taxa_summary.py \
+-i ~/output/taxaf/otu_table_L6.txt \
+
+echo "Calculation Complete"
+
+echo "closing environment"
+conda deactivate
+
+### end script
+
