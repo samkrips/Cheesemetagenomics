@@ -17,9 +17,6 @@ echo "creating and cd to output directory"
 mkdir -p ~/output/boxf/
 cd ~/output/boxf/
 
-
-echo "Calculating Joined Diversity..."
-
 make_distance_boxplots.py \
 -m ~/Map.tsv \
 -o ~/output/boxf \
