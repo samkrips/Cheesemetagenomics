@@ -17,9 +17,6 @@ echo "creating and cd to output directory"
 mkdir -p ~/output/permanovaf/
 cd ~/output/permanovaf/
 
-
-echo "Calculating Joined Diversity..."
-
 compare_categories.py --method permanova \
 -i ~/output/owndataDiversity/Dataf/bdiv_even34000/unweighted_unifrac_dm.txt \
 -m ~/Brie.tsv \
