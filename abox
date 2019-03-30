@@ -17,9 +17,6 @@ echo "creating and cd to output directory"
 mkdir -p ~/output/aboxf/
 cd ~/output/aboxf/
 
-
-echo "Calculating Joined Diversity..."
-
 compare_alpha_diversity.py \
 -i ~/output/owndataDiversity/Dataf/arare_max34000/alpha_div_collated/PD_whole_tree.txt \
 -m ~/Map.tsv \
