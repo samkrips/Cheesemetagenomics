@@ -1,0 +1,59 @@
+#!/bin/bash --login
+#PBS -l walltime=12:00:00
+#PBS -l select=1:ncpus=16
+#PBS -N Box
+#PBS -A d411-training
+#PBS -j oe
+
+echo "setting temporary directory"
+mkdir -p ~/qiime_tmp
+export TMPDIR=~/qiime_tmp
+
+echo "loading virtual environment"
+conda deactivate
+conda activate qiime1
+
+echo "creating and cd to output directory"
+mkdir -p ~/output/boxf/
+cd ~/output/boxf/
+
+
+echo "Calculating Joined Diversity..."
+
+make_distance_boxplots.py \
+-m ~/Map.tsv \
+-o ~/output/boxf \
+-d ~/output/owndataDiversity/Dataf/bdiv_even34000/unweighted_unifrac_dm.txt \
+-f Name \
+
+make_distance_boxplots.py \
+-m ~/Map.tsv \
+-o ~/output/boxf \
+-d ~/output/owndataDiversity/Dataf/bdiv_even34000/unweighted_unifrac_dm.txt \
+-f Country \
+
+make_distance_boxplots.py \
+-m ~/Map.tsv \
+-o ~/output/boxf \
+-d ~/output/owndataDiversity/Dataf/bdiv_even34000/unweighted_unifrac_dm.txt \
+-f Raw_or_Pasteurised \
+
+make_distance_boxplots.py \
+-m ~/Map.tsv \
+-o ~/output/boxf \
+-d ~/output/owndataDiversity/Dataf/bdiv_even34000/unweighted_unifrac_dm.txt \
+-f Type \
+
+make_distance_boxplots.py \
+-m ~/Map.tsv \
+-o ~/output/boxf \
+-d ~/output/owndataDiversity/Dataf/bdiv_even34000/unweighted_unifrac_dm.txt \
+-f Store_Type
+
+echo "Calculation Complete"
+
+echo "closing environment"
+conda deactivate
+
+### end script
+
